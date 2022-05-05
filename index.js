@@ -65,13 +65,21 @@ async function run() {
       res.send(result);
     })
 
-    //!------- Update Quantity ---------
+    //!------- Delete Item ---------
     app.delete('/deleteItem/:id', async(req, res)=> {
       const id = req.params.id;
       const query = {_id: ObjectId(id)}
       const result = await itemCollection.deleteOne(query);
       res.send(result);
   })
+
+  //!------- Add Item ---------
+  app.post("/newItem", async(req, res)=> {
+    const newItem = req.body;
+    const result = await itemCollection.insertOne(newItem);
+    console.log("new-service added");
+    res.send(result);
+})
 
 
   } finally {
