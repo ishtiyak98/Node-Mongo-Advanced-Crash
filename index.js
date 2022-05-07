@@ -121,7 +121,7 @@ function verifyToken(token) {
   let email;
   jwt.verify(token, process.env.TOKEN, function (err, decoded) {
     if (err) {
-      email = "Invalid Email";
+      email = "Email is Invalid";
     }
     if (decoded) {
       email = decoded;
