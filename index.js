@@ -23,10 +23,6 @@ async function run() {
     await client.connect();
     const itemCollection = client.db("furnitureHouse").collection("items");
 
-    app.get("/", (req, res) => {
-      res.send("Warehouse Management Server");
-    });
-
     //!------ Show all Items ------
     app.get("/inventory", async (req, res) => {
       const size = parseInt(req.query.itemSize);
@@ -130,6 +126,10 @@ function verifyToken(token) {
 
   return email;
 }
+
+app.get("/", (req, res) => {
+  res.send("Warehouse Management Server");
+});
 
 app.listen(port, () => {
   console.log("listening from port: ", port);
