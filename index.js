@@ -43,7 +43,7 @@ async function run() {
     app.get("/myItems", async(req, res) => {
       const tokenInfo = req.headers.authorization;
       const [email, token] = tokenInfo.split(" ");
-      const decoded = verifyToken(token);
+      const decoded = tokenVerify(token);
 
       if (email === decoded.email) {
         const cursor = itemCollection.find({userEmail: email});
@@ -113,7 +113,7 @@ async function run() {
 
 run().catch(console.dir);
 
-function verifyToken(token) {
+function tokenVerify(token) {
   let email;
   jwt.verify(token, process.env.TOKEN, function (err, decoded) {
     if (err) {
