@@ -92,6 +92,7 @@ async function run() {
       const result = await itemCollection.deleteOne(query);
       res.send(result);
     });
+    
 
     //!------- Add Item ---------
     app.post("/newItem", async (req, res) => {
@@ -99,6 +100,7 @@ async function run() {
       const result = await itemCollection.insertOne(newItem);
       res.send(result);
     });
+
 
     //!------- JWT token ---------
     app.post("/login", async (req, res) => {
