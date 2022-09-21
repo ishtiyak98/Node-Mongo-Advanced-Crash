@@ -1,5 +1,7 @@
 const express = require("express");
 const itemsController = require("../controllers/items.controller");
+const limiter = require("../middleware/limiter");
+const viewCont = require("../middleware/viewCount");
 
 const router = express.Router();
 
@@ -19,5 +21,11 @@ router
   .route("/")
   .get(itemsController.getAllItems)
   .post(itemsController.saveItem);
+
+// router.route("/:id").get(limiter, viewCont, itemsController.getItemDetails);
+router
+  .route("/:id")
+  .get(itemsController.getItemDetails)
+  .patch(itemsController.updateItem);
 
 module.exports = router;
